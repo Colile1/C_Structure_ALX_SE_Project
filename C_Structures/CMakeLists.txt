@@ -19,7 +19,9 @@ find_package(GTest REQUIRED)
 # Add shared library
 add_library(C_Structures SHARED
   src/main.cpp
-  # Add future files here (e.g., src/model/Node.cpp)
+  src/model/Node.cpp
+  src/model/Beam.cpp
+  src/data/CSVHandler.cpp
 )
 
 # Include directories
