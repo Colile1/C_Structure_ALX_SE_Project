@@ -1,15 +1,14 @@
+#!/bin/bash
+# Get the absolute path of the current directory (project root)
+project_root=$(realpath .)
+echo "Project absolute path: $project_root"
 
-# Initialize a new Git repository (if not already initialized)
-git init
+# Backup the original CMakeLists.txt
+cp CMakeLists.txt CMakeLists.txt.bak
+echo "Backup created: CMakeLists.txt.bak"
 
-# Add all files in the current directory to Git
-git add .
+# Use sed to insert '${CMAKE_SOURCE_DIR}/' before paths starting with 'src/'
+# The -i.bak option creates an inline backup; you can remove it if you already backed up.
+sed -i 's|\(src/\)|${CMAKE_SOURCE_DIR}/\1|g' CMakeLists.txt
 
-# Create an initial commit
-git commit -m "Initial commit"
-
-# Add the GitHub repository as a remote
-git remote add origin https://github.com/$GITHUB_USERNAME/$REPO_NAME.git
-
-# Push the initial commit to the main branch (or master if that's your default)
-git push -u origin main
+echo "CMakeLists.txt has been updated to use absolute paths."

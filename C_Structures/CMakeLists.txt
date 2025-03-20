@@ -27,10 +27,11 @@ add_library(C_Structures SHARED
 # Include directories
 target_include_directories(C_Structures PRIVATE
   ${SDL2_INCLUDE_DIRS}
-  ${EIGEN3_INCLUDE_DIR}
+  ${EIGEN3_INCLUDE_DIR}/Eigen  # Ensure Eigen include path is correct
   ${GLEW_INCLUDE_DIRS}
   include/
 )
+
 
 # Link libraries
 target_link_libraries(C_Structures PRIVATE
